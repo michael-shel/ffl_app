@@ -1,0 +1,7 @@
+{
+  "name": "LoginOnly",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
