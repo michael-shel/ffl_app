@@ -1,0 +1,20 @@
+.overflow-dots { 
+    line-height: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    min-height: 58px;
+  }
+
+  .swiper-slide img {
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+}
+
+.text-black{
+    color: black;
+}

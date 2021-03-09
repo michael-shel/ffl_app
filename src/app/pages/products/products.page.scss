@@ -1,0 +1,72 @@
+#top-menu {
+    background: #0c9442;
+    }
+    
+    #top-menu ion-slide {
+    background: #0caf4d;
+    padding: 10px 20px;
+    width: unset !important;
+    color: rgb(255, 255, 255);
+    }
+    
+    #top-menu ion-slide a{
+    color: rgb(255, 255, 255);
+    }
+    
+    .product-item ion-button, .product-item ion-icon{
+        padding: 0px!important;
+        padding-top: 0px!important;
+        padding-bottom: 0px!important;
+        --padding-top: 0px!important;
+        --padding-bottom: 0px!important;
+        --padding-end: 0px!important;
+        --padding-start: 0px!important;
+    }
+    
+    .price{
+        color:rgba(39, 39, 39, 0.836);
+    }
+    
+    ion-avatar{
+        --width: 500px;
+        --border-radius: 0px;
+        width: 90px!important;
+        height: 90px!important;
+    }
+    #logo{
+            width: 116px;
+        padding: 7px 0 0 0;
+    }
+    .back-btn {
+        color:rgb(13, 88, 10);
+        padding-right:15px;
+    }
+
+    .overflow-dots { 
+        line-height: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-align: left;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        min-height: 58px;
+      }
+
+      .swiper-slide img {
+        height: 150px;
+        object-fit: contain;
+    }
+    .icon-img {
+        display: inline-block;
+        width: 1.2em;
+        height: 1.2em;
+        margin-right: 7px;
+    }
+    .badge-for-wishlist{
+        position: fixed;
+        margin: -10px 15px;
+        background: white;
+        border: 1px solid #10dc60;
+        color: #10dc60;
+    }

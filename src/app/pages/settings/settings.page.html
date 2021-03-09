@@ -1,0 +1,90 @@
+<ion-header ngClass="{{headerStyle}}" class="sc-ion-card-ios-h m-0 bg-white pt-1">
+  <!-- <img id="logo" src="/assets/img/logo.svg"/> -->
+  <ion-grid class="ion-no-padding">
+    <ion-row class="p-0">
+      <ion-col size="4">
+        <ion-button  (click)="goProfile()" routerDirection="back" fill="clear" size="" class="mb-0" >
+          <ion-icon slot="start" size="small" name="arrow-back-outline"></ion-icon>
+          <small class="text-muted"> Назад </small>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button  fill="clear" size="" class="mb-0" >
+          <span class=""> Редагувати </span>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4" class="text-right">
+        <ion-button  (click)="logOut()" routerDirection="back" fill="clear" size="" class="mb-0" >
+          <small class="text-danger"> Вийти </small>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content > 
+  <div class="">
+    <ion-grid class="pt-0 ">
+          <ion-row class="" >
+          <ion-col size="12" class="">
+            <ion-card class="m-0 bg-white">
+              <ion-card-content class="p-2">
+            <form [formGroup]="slide1Form">
+              <ion-item color='light'>
+                <ion-label class="label-limit">Ім'я:</ion-label>
+                <ion-input
+                  formControlName="name"
+                ></ion-input>
+              </ion-item>
+              <ion-item color='light'>
+                <ion-label class="label-limit">Прізвище:</ion-label>
+                <ion-input
+                  formControlName="lname"
+                ></ion-input>
+              </ion-item>
+              <ion-item color='light'>
+                <ion-label class="label-limit">Email:</ion-label>
+                <ion-input
+                  formControlName="email"
+                ></ion-input>
+              </ion-item>
+              <ion-item color='light'>
+                <ion-label class="label-limit">Телефон:</ion-label>
+                <ion-input
+                  formControlName="phone"
+                ></ion-input>
+              </ion-item>
+              <ion-item color='light'>
+                <ion-label class="label-limit">Адрес:</ion-label>
+                <ion-textarea
+                  formControlName="address"
+                ></ion-textarea>
+              </ion-item>
+          
+              <ion-col>
+                <ion-row class="ion-margin-top ion-no-borde ion-justify-content-center">
+                  <ion-button
+                  shape="round"
+                  expand="block"
+                  color="success"
+                  fill="solid"
+                  (click)="update()"
+                  >
+                  <span class="h5 mb-0">
+                    Оновити
+                  </span>
+                  </ion-button>
+                </ion-row>
+              </ion-col>
+            </form >
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          </ion-row>
+    </ion-grid>
+
+  </div>
+ 
+</ion-content>
+
+

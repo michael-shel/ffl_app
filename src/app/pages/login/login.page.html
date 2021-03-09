@@ -1,0 +1,92 @@
+<ion-content class="auth-info-container">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+  <ion-slides #slides  scrollbar="false">
+
+  <ion-slide>
+  
+  <ion-grid>
+     <h2 class="ion-padding ">FoodForLife</h2>
+    <ion-row class="">
+     <ion-col>
+    
+  <form [formGroup]="slide1Form">
+    <ion-item >
+      <ion-label class="label-limit">Email:</ion-label>
+      <ion-input
+        formControlName="email"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="label-limit">Пароль:</ion-label>
+      <ion-input
+        formControlName="password"
+      ></ion-input>
+    </ion-item>
+
+    <ion-col>
+      <ion-row class="ion-margin-top ion-no-borde ion-justify-content-center">
+        <a (click)="signUp()">Реєстрація FoodForLife</a>
+      </ion-row>
+    </ion-col>
+  </form >
+      </ion-col>
+    </ion-row>
+    <ion-row class="mb-d">
+      <ion-col>
+          <ion-button
+          shape="round"
+          expand="block"
+          [disabled]=!slide1Form.valid
+          (click)="login()"
+          color="success"
+          fill="solid"
+          >
+          <span class="h5 mb-0">
+            Увійти
+          </span>
+          </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-slide>
+  <!-- <ion-slide>
+     <ion-grid>
+     <h1 class="ion-padding">Enter code from sms</h1>
+    <ion-row>
+     <ion-col>
+
+  <form [formGroup]="slide2Form" class="mb-d">
+    <ion-list>
+      <ion-item>
+        <ion-label >Code:</ion-label>
+        <ion-input
+        formControlName="code" type="text"
+        ></ion-input>
+      </ion-item>
+
+    </ion-list>
+    <ion-col class="t-center">
+          <a (click)="back()">Back</a>
+    </ion-col>
+  </form>
+      </ion-col>
+    </ion-row>
+    <div class="blockbutton-down">
+          <ion-button
+          shape="round"
+          (click)="login()"
+          expand="block"
+          [disabled]=!slide2Form.valid
+  >
+    Login
+  </ion-button>
+    </div>
+  </ion-grid>
+  </ion-slide> -->
+  </ion-slides>
+      </ion-col>
+      </ion-row>
+      </ion-grid>
+</ion-content>

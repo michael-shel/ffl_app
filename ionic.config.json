@@ -1,7 +1,8 @@
 {
   "name": "LoginOnly",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

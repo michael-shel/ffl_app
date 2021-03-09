@@ -1,0 +1,123 @@
+<ion-header class="sc-ion-card-ios-h m-0 pt-3">
+  <!-- <img id="logo" src="/assets/img/logo.svg"/> -->
+    <ion-button shape="round" expand="block" color="medium" fill="outline" size="small" class="float-right"  (click)="dismiss()">
+      <ion-icon slot="icon-only" color="dark" name="close"></ion-icon>
+    </ion-button>
+</ion-header>
+
+<ion-content class="bg-white">
+<ion-grid class="pt-0 h-100 bg-white">
+  <ion-row class="">
+    <ion-col size="12" class="bg-white">
+      <ion-card class="ml-0 mr-0">
+        <ion-card-header>
+          <img class="img-box-sizing" src="{{product.main_image?product.main_image.url:''}}" />
+        </ion-card-header>
+        
+
+        <ion-card-content class="p-2">
+          <ion-grid>
+            <ion-row>
+              <ion-col class="h5 text-dark">
+                  {{product.name}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="h5 text-dark">
+                {{product.price}}$
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let attribute of product.data">
+              <ion-col class="pb-0 pt-0 mb-0 h5 text-dark">
+                <ion-text>
+                  <h3 class="text-muted" >{{attribute.term}} : {{attribute.value}}</h3>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            
+            <ion-row>
+              <ion-col [innerHTML]=product.short_desc >
+              </ion-col>
+            </ion-row>
+
+            <!-- <ion-row>
+                <ion-col class="ion-text-center">
+                  <ion-button fill="outline" shape="round" color="medium" class="">
+                    <ion-icon slot="icon-only" color="success" name="heart"></ion-icon>
+                  </ion-button>
+              </ion-col>
+            </ion-row> -->
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row class="bg-white mt-2 pb-4">
+    <ion-text class="">
+      <h4 class="ion-padding-start pt-3 mb-0">Cхожі товари</h4>
+    </ion-text>
+  
+    <ion-slides class="pr-3 pl-3" [options]="{ slidesPerView: 1.8, spaceBetween: 10, centeredSlides: false }">
+      <ion-slide *ngFor="let product of similar; let i = index">
+  
+      <ion-card class="ml-0 mr-0">
+        <ion-card-header >
+          
+          <img src="{{product.main_image?product.main_image.url+'?a=bc.jpg':'https://foodforlife.com.ua/storage/15802/5ec46f4e87ba4_chef-with-hat.svg'}}" />
+        </ion-card-header>
+        
+  
+        <ion-card-content class="p-2">
+          <ion-grid>
+            <ion-row >
+              <ion-col class="overflow-dots text-black">
+                  <small>{{product.name}}</small>
+              </ion-col>
+            </ion-row>
+            
+            <ion-row >
+              <ion-col class="ion-text-left">
+                <ion-text>
+                  <h2 class="text-bold text-black">{{product.price}}$</h2>
+                </ion-text>
+                <ion-text *ngFor="let attribute of product.data">
+                  <h3 class="text-muted" *ngIf="attribute.term == 'Вага'" >{{attribute.value}}</h3>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+  
+              <ion-row class="p-0">
+                <ion-col size="3" class="p-0">
+                  <ion-button (click)="addToWishlist(product,this)"  fill="outline" shape="round" color="medium" class="ion-no-padding">
+                    <ion-icon slot="icon-only" [color]="product.added==true?'danger':'medium'"  name="heart" class="p-2"></ion-icon>
+                  </ion-button>
+              </ion-col>
+                <ion-col size="9" class="ion-text-right p-0">
+                  <ion-button (click)="addToCart(product)" fill="outline" shape="round" color="medium" class="ion-no-padding ion-padding-end">
+                    <span class="text-success ">+</span><ion-icon class="pt-2 pb-2 pl-2 pr-0" slot="icon-only" color="success" name="cart"></ion-icon>
+                  </ion-button>
+              </ion-col>
+              </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+  
+      </ion-slide>
+    </ion-slides>
+    <!-- <ion-button shape="round" expand="block" color="medium" fill="outline" class="text-center w-100 pl-3 pr-3" >
+      <ion-text class="text-capitalize" color="success"> Додати Всі</ion-text>
+      <ion-icon slot="icon-only" color="success" slot="end" name="cart"></ion-icon>
+    </ion-button> -->
+  </ion-row>
+</ion-grid>
+
+
+</ion-content>
+<div class="bg-white sc-ion-card-ios-h m-0 p-2">
+<ion-button (click)="addToWishlist(product)"  fill="outline" shape="round" color="medium" class="ion-no-padding">
+  <ion-icon slot="icon-only" [color]="product.added==true?'danger':'medium'"  name="heart" class="p-2"></ion-icon>
+</ion-button>
+<ion-button fill="outline" shape="round" color="medium" class="float-right" (click)="addToCart(product)">
+  <ion-icon slot="icon-only" color="success" name="cart"></ion-icon>
+</ion-button>
+</div>

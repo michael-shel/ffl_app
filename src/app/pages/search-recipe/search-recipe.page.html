@@ -1,0 +1,45 @@
+<ion-header class="sc-ion-card-ios-h m-0 pt-3">
+  <ion-grid class="p-0">
+    <ion-row class="align-items-center">
+      <ion-col size="8" class="p-0">
+        <h5 class="mb-0 pl-3">Пошук товарів</h5>
+      </ion-col>
+      <ion-col class="ion-text-end ion-no-padding p-0" size="3" class="justify-content-end">
+        <ion-button shape="round" expand="block" color="medium" fill="outline" size="small" class="float-right"  (click)="dismiss()">
+          <ion-icon slot="icon-only" color="dark" name="close"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Назва товару" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-grid *ngIf="loading">
+    <ion-row class="justify-content-center">
+      <ion-spinner name="bubbles" color="success"></ion-spinner>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-list *ngIf="!loading">
+      <!-- <ion-item *ngFor="let item of products">{{ item.name }}</ion-item> -->
+      <ion-grid *ngFor="let product of products" class="border-top bg-white">
+        <ion-row >
+          <ion-col size="3" (click)="RecipeRoute(product.id)" class="pt-0 d-flex align-items-center justify-content-center">
+            <ion-img class="cart-image-box" src="{{product.main_image?product.main_image.url:'https://foodforlife.com.ua/storage/15802/5ec46f4e87ba4_chef-with-hat.svg'}}"></ion-img>
+          </ion-col>
+          <ion-col  size="6" (click)="RecipeRoute(product.id)" >
+            <ion-text class="overflow-dots">
+              <small> {{product.name}} </small>
+            </ion-text>
+          </ion-col>
+          <ion-col  size="3" class="text-center">
+            <ion-button (click)="addToWishlist(product,this)"  fill="outline" shape="round" color="medium" class="ion-no-padding">
+              <ion-icon slot="icon-only" [color]="product.added==true?'danger':'medium'"  name="heart" class="p-2"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </ion-list>
+
+</ion-content>

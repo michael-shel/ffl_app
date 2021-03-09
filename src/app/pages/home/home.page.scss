@@ -1,0 +1,73 @@
+
+ion-toolbar{
+        padding-bottom: 40px;
+        border-bottom-left-radius: 50% 30px;
+        border-bottom-right-radius: 50% 30px;    
+}
+.header{
+    display: none;
+    position: absolute;
+    opacity: 0;
+    transition: 700ms linear;
+}
+.tollbar-profile button{
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.ion-no-padding-bottom{
+    padding-bottom: 0 !important;
+}
+.header-text{
+    font-weight: bold;
+}
+.mine-orders{
+    align-items: center;
+    display: flex;
+    justify-content: left;
+    ion-button{
+    width: 55px;
+    height: 55px;
+    }
+}
+.bg-white{
+    background-color: white !important;
+}
+.text-bold{
+    font-weight: bold !important;
+}
+.text-black{
+    color: black;
+}
+.overflow-dots { 
+    line-height: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    min-height: 58px;
+  }
+
+  .icon-img {
+      display: inline-block;
+      width: 1.2em;
+      height: 1.2em;
+      margin-right: 7px;
+  }
+  .img-box-sizing {
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+}
+.badge-for-wishlist{
+    position: absolute;
+    margin: -10px 15px;
+    background: white;
+    border: 1px solid #10dc60;
+    color: #10dc60;
+}
+
+
+
+

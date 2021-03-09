@@ -1,0 +1,39 @@
+ion-header {
+    border-bottom: 0px solid rgb(216, 216, 216);
+    box-shadow: 0 0 0 0;
+    background: rgb(255, 255, 255);
+}
+
+.header-md:after {
+    background-image: none;
+}
+
+.action-sheet-title.sc-ion-action-sheet-md {
+    height: auto;
+}
+
+.searchbar-input.sc-ion-searchbar-ios {
+    border-radius: 30px;
+}
+
+.auth-info-container {
+    
+ion-grid {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: calc(100% - 56px);
+}
+
+ion-form, h1 {
+    text-align: left;
+    margin-top:0; 
+    padding: 0 15px;
+        margin-bottom: .7em;
+}
+
+}
+
+.h1{
+    font-weight: bold;
+}

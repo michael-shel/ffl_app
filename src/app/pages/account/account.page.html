@@ -1,0 +1,85 @@
+<ion-header ngClass="{{headerStyle}}" class="sc-ion-card-ios-h m-0 bg-white pt-1">
+  <!-- <img id="logo" src="/assets/img/logo.svg"/> -->
+  <ion-grid class="ion-no-padding">
+    <ion-row class="p-0">
+      <ion-col size="4">
+        <ion-button  (click)="goStore()" routerDirection="back" fill="clear" size="" class="mb-0" >
+          <ion-icon slot="start" size="small" name="arrow-back-outline"></ion-icon>
+          <small class="text-muted"> Магазин </small>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button  fill="clear" size="" class="mb-0" >
+          <span class=""> Профіль </span>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button  (click)="goSetting()" routerDirection="forward" fill="clear" size="" class="mb-0" >
+          <small class="text-muted"> Редагувати </small>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content > 
+  <div class="">
+    <ion-grid class="pt-0 ">
+          <ion-row class="" >
+          <ion-col size="12" class="" *ngIf="user">
+            <ion-card class="m-0 bg-white">
+              <ion-card-content class="p-2">
+                <ion-item color='light'>
+                  <ion-text class="h5 mb-0" ngClass="user.name?'':'d-none'" *ngIf="user.name">{{user.name}}</ion-text>
+                </ion-item>
+                <ion-item color='light'>
+                  <ion-text class="h5 mb-0" ngClass="user.email?'':'d-none'" *ngIf="user.email">{{user.email}}</ion-text>
+                </ion-item>
+                <ion-item color='light' ngClass="user.phone?'':'d-none'"  *ngIf="user.phone">
+                  <ion-text class="h6 mb-0">{{user.phone}}</ion-text>
+                </ion-item>
+                <ion-item color='light'ngClass="user.address?'':'d-none'" *ngIf="user.address">
+                  <small class=" mb-0">{{user.address}}</small>
+                </ion-item>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          </ion-row>
+    </ion-grid>
+
+    <ion-list class="m-0 mb-2 border-bottom sc-ion-card-ios-h" *ngIf="orders.length > 0">
+      <ion-list-header class="bg-white">
+        Мої замовлення
+      </ion-list-header>
+      
+      <ion-grid class="pt-0 bg-white">
+        <ion-row class="" >
+          <ion-col size="12" class="bg-white" *ngFor="let order of orders">
+            <ion-card class="m-0">
+              <ion-card-content class="p-2">
+                <ion-grid class="pt-0 bg-white">
+                  <ion-row class="" >
+                    <ion-col size="6" class="bg-white">
+                      Замовлення № {{order.id}}
+                    </ion-col>
+                    <ion-col size="6" class="bg-white" *ngIf="order.status == 'done'">
+                      Статус : <span class="text-success">{{order.status}} </span>
+                    </ion-col>
+                    <ion-col size="6" class="bg-white" *ngIf="order.status != 'done'">
+                      Статус : <span class="text-warning">{{order.status}} </span>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+     </ion-grid>
+
+    </ion-list>
+
+  </div>
+ 
+</ion-content>
+
+

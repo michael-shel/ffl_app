@@ -1,0 +1,57 @@
+<ion-toolbar>
+  <ion-button  routerLink="/app/app/recipes" routerDirection="back" fill="clear" size="small" class="mb-0" >
+    <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    <span class="text-capitalize"> Всі Рецепти </span>
+  </ion-button>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true">
+    
+        <ion-grid class="pt-0 bg-white h-100" *ngIf="recipes.length > 0">
+          <ion-row>
+            <ion-col size="6" class="bg-white" *ngFor="let recipe of recipes">
+              <ion-card class="ml-0 mr-0" (click)="openRecipe(recipe.id)">
+                <ion-card-header>
+                  <img class="img-box-sizing" src="{{recipe.main_image.url}}" />
+                </ion-card-header>
+                
+        
+                <ion-card-content class="p-2">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col class="overflow-dots text-black">
+                          <small>{{recipe.name}}</small>
+                      </ion-col>
+                    </ion-row>
+        
+                    <ion-row>
+                        <ion-col class="ion-text-center">
+                          <ion-button fill="outline" shape="round" color="medium" class="">
+                            <ion-icon slot="icon-only" color="success" name="heart"></ion-icon>
+                          </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid> 
+
+        <ion-grid class="pt-3 bg-white h-100" *ngIf="recipes.length < 1">
+          <ion-row>
+            <ion-col size="12" class="bg-white text-center">
+                          <ion-text>Рецептів не знайдено</ion-text>
+            </ion-col>
+            <ion-col size="12" class="bg-white text-center">
+              <ion-text>
+                <small class="text-muted">
+                  Додайте ще товарів до вподобаних
+                </small>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid> 
+
+
+</ion-content>

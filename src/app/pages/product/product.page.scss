@@ -1,0 +1,23 @@
+.overflow-dots { 
+    line-height: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    min-height: 58px;
+  }
+
+  .img-box-sizing {
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+}
+.badge-for-wishlist{
+  position: fixed;
+  margin: -10px 15px;
+  background: white;
+  border: 1px solid #10dc60;
+  color: #10dc60;
+}

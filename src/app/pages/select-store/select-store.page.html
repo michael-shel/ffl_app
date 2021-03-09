@@ -1,0 +1,27 @@
+
+<ion-header class="sc-ion-card-ios-h m-0 bg-white pt-3">
+
+    <ion-button shape="round" expand="block" color="medium" fill="outline" size="small" class="float-right"  (click)="dismiss()">
+      <ion-icon slot="icon-only" color="dark" name="close"></ion-icon>
+    </ion-button>
+</ion-header>
+
+<ion-content fullscreen color="light"> 
+  <div class="bg-white border-top">
+
+      <ion-text class="bg-white pl-3 font-weight-bold">
+        Виберіть магазин для покупок
+      </ion-text>
+
+      <ion-grid class="bg-white pt-3">
+        <ion-row>
+          <ion-col *ngFor="let store of stores" class="border-top bg-white" size="6" class="d-flex align-items-center justify-content-center">
+            <!-- <ion-img class="cart-image-box" src="{{store.icon?store.icon:'https://foodforlife.com.ua/storage/15802/5ec46f4e87ba4_chef-with-hat.svg'}}"></ion-img> -->
+            <ion-button fill="outline" color="medium" class="rounded shadow w-100 ion-no-padding" size="large" expand="block" (click)="selectStore(store)">
+              <span class="text-dark">{{store.name}}</span>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </div>
+</ion-content>

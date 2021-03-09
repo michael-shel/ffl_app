@@ -1,0 +1,130 @@
+<ion-header class="sc-ion-card-ios-h m-0 bg-white pt-1">
+  <!-- <img id="logo" src="/assets/img/logo.svg"/> -->
+    <ion-text class="h5 p-3">{{selectedStore.value.name}}</ion-text> 
+    <ion-button shape="round" expand="block" color="medium" fill="outline" size="small" class="float-right"  (click)="close()">
+      <ion-icon slot="icon-only" color="dark" name="close"></ion-icon>
+    </ion-button>
+    <ion-buttons slot="end" class="float-right">
+      <ion-button shape="round" expand="block" color="medium" fill="outline" size="small" (click)="presentActionSheet()">
+        <ion-icon slot="icon-only" color="dark" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+</ion-header>
+
+<ion-content fullscreen> 
+  <div class="">
+    <ion-grid class="pt-0 bg-white" *ngFor="let store of stores">
+          <ion-row class="" *ngIf="!(store.name === 'EatForLife' || store.name === selectedStore.value.name || store.products.length === 0 || store.products.length != cart.length) ">
+          <ion-col size="12" class="bg-white">
+            <ion-card class="m-0">
+              <ion-card-content class="p-2">
+                <ion-text class="h4">{{store.name}}</ion-text>
+                <div *ngFor="let total of totals" class="float-right">
+                  <ion-text class="h4 " *ngIf="total.id == store.id" > $ {{total.value}} </ion-text>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          </ion-row>
+    </ion-grid>
+
+    <ion-list class="m-0 mb-2 border-bottom sc-ion-card-ios-h">
+      <ion-list-header class="bg-white">
+        Товари в корзині 
+      </ion-list-header>
+      
+      <ion-grid *ngFor="let product of cart" class="border-top bg-white">
+        <ion-row>
+          <ion-col size="3" class="d-flex align-items-center justify-content-center">
+            <ion-img class="cart-image-box" src="{{product.main_image?product.main_image.url:'https://foodforlife.com.ua/storage/15802/5ec46f4e87ba4_chef-with-hat.svg'}}"></ion-img>
+          </ion-col>
+          <ion-col>
+            <ion-row>
+              <ion-text class="overflow-dots">
+                <small> {{product.name}} </small>
+              </ion-text>
+            </ion-row>
+            <ion-row class="align-items-center">
+              <ion-col class="p-0" size="5">
+                <ion-row class="line-height-1">
+                  <ion-text>
+                    <small class="text-bold"> 
+                    {{product.price}}
+                    </small>
+                  </ion-text>
+                </ion-row>
+                <ion-row class="line-height-1">
+                  <ion-text *ngIf="product.data.length == 0">
+                    <small class="text-muted invisible" >0</small>
+                  </ion-text>
+                  <ion-text *ngFor="let attribute of product.data">
+                    <small class="text-muted" *ngIf="attribute.term == 'Вага'" >{{attribute.value}}</small>
+                  </ion-text>
+                </ion-row>
+              </ion-col>
+              <ion-col class="p-0" size="7">
+                <ion-grid>
+                  <ion-row class="align-items-center text-center border rounded-pill">
+                    <ion-col size="4" class="p-0">
+                      <ion-button fill="clear" size="small" shape="round" color="medium" class="ion-no-padding" (click)="decreaseCartItem(product)">
+                        <span *ngIf="product.amount > 1" class="h4 mb-1 text-dark">-</span>
+                        <ion-icon *ngIf="product.amount <= 1" size="small" color="dark" name="trash-bin"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+                    <ion-col size="4" class="p-0">{{product.amount}}</ion-col>
+                    <ion-col size="4" class="p-0">
+                      <ion-button fill="clear" size="small" shape="round" color="medium" class="ion-no-padding" (click)="increaseCartItem(product)">
+                        <ion-icon size="large" color="success" name="add-circle"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-list>
+      <ion-grid class="bg-white sc-ion-card-ios-h m-0 mb-3">
+        <ion-row>
+          <ion-col size="6" class="text-center">
+            Загально:
+          </ion-col>
+          <ion-col size="6" class="ion-text-end text-bold">
+            {{ getTotal() | currency:'USD' }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+  </div>
+ 
+</ion-content>
+
+<div class="bg-white sc-ion-card-ios-h m-0">
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2" class="text-center">
+          <ion-button shape="round"  color="medium" fill="clear" size="" class="ion-no-padding"  (click)="close()">
+            <ion-icon slot="icon-only" color="dark" name="close"></ion-icon>
+          </ion-button>        
+        </ion-col>
+        <ion-col size="10">
+          <ion-button fill="solid" expand="block" shape="round" color="success" class="w-100 float-right">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6" class="text-left">
+                  Оформити
+                </ion-col>
+                <ion-col size="6" class="text-right">
+                  {{ getTotal() | currency:'USD' }}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+</div>

@@ -1,0 +1,56 @@
+ion-item {
+  --transition: unset;
+}
+
+.active {
+  --color: var(--ion-color-primary);
+  --background: rgba(var(--ion-color-primary-rgb), 0.12);
+  --background-hover: rgba(var(--ion-color-primary-rgb), 0.16);
+  --background-focused: rgba(var(--ion-color-primary-rgb), 0.24);
+
+  ion-icon {
+    color: inherit;
+  }
+}
+ion-app.md .personal-header ion-toolbar{
+  padding-top: 5px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(var(--ion-color-primary-rgb), 0.12);
+  --background: rgb(243, 243, 243);
+}
+
+ion-app.md.dark-theme .personal-header ion-toolbar{
+  --background: rgba(27, 27, 27, 0.938);
+}
+
+ion-app.md .personal-header ion-toolbar ion-avatar{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+
+ion-app.ios .personal-header ion-toolbar {
+   ion-avatar{
+  display: none;
+}
+}
+
+
+ion-title small{
+  display: block;
+  color: rgb(87, 87, 87);
+  font-size: 0.6em;
+  font-weight: 400;
+  line-height: 1.4em;
+}
+
+ion-button.button-disabled {
+    --opacity: 1;
+    --background: #f3f3f3;
+    --color: #4e4e4e;
+    --box-shadow: 0 0 0 0;
+}
+
+a {
+  text-decoration: blink;
+}

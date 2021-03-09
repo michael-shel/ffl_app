@@ -1,0 +1,21 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Головна</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="recipes">
+      <ion-icon name="list-outline"></ion-icon>
+      <ion-label>Рецепти</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="openCart()">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-label>{{ totalPrice | async | currency:'UAH' }}</ion-label>
+      <ion-badge color="success">{{ cartItemCount | async }}</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

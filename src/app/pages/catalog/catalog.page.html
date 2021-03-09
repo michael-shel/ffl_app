@@ -1,0 +1,23 @@
+<ion-header >
+  <ion-searchbar placeholder="Пошук"></ion-searchbar>
+  <ion-item class="ion-no-padding" color="light">
+    <ion-text class="ion-padding-start">
+      <h5 class="pt-3">Каталог товарів</h5>
+    </ion-text>
+</ion-item>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="">
+ 
+    
+    <ion-list class="ion-no-padding bg-white mb-0 pb-4">
+          <ion-item button routerLink="/app/app/catalog/products/{{category.id}}" color="light"  *ngFor="let category of categories">
+            <ion-img slot="start" src="{{category.small_icon?category.small_icon.url+'?a=bc.jpg':'https://foodforlife.com.ua/storage/15802/5ec46f4e87ba4_chef-with-hat.svg'}}" class="component-icon component-icon-primary icon-img"></ion-img>
+            <ion-label>
+              <h3>{{ category.name }}</h3>
+            </ion-label>
+          </ion-item>
+    </ion-list>
+    </div>
+</ion-content>

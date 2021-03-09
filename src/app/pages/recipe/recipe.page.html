@@ -1,0 +1,123 @@
+<ion-header class="pt-1">
+  <ion-toolbar>
+    
+    <ion-grid class="p-0">
+      <ion-row>
+        <ion-col  size="8" class="p-0">
+          <ion-button  (click)="goBack()" routerDirection="back" fill="clear" size="" class="mb-0" >
+            <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+            <span class="text-capitalize"> Рецепти </span>
+          </ion-button>
+        </ion-col>
+        <ion-col class="p-0 ion-text-end ion-no-padding p-0" size="2" class="justify-content-end">
+          <ion-button fill="clear" (click)="openWishlist()">
+            <ion-icon slot="icon-only" color="success" name="heart"></ion-icon>
+            <ion-badge color="success" class="badge-for-wishlist">{{ recipeItemCount | async }}</ion-badge>
+          </ion-button>
+        </ion-col>
+        <ion-col class="p-0 ion-text-end ion-no-padding p-0" size="2" class="justify-content-end">
+          <ion-button fill="clear" (click)="Account()" >
+            <ion-icon slot="icon-only" color="success" name="person"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-grid class="pt-0 bg-white h-100">
+    <ion-row>
+      <ion-col size="12" class="bg-white">
+        <ion-card class="ml-0 mr-0">
+          <ion-card-header>
+            <img class="img-box-sizing" src="{{recipe.main_image?recipe.main_image.url:''}}" />
+          </ion-card-header>
+          
+  
+          <ion-card-content class="p-2">
+            <ion-grid>
+              <ion-row>
+                <ion-col class="h5 text-dark">
+                    {{recipe.name}}
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col [innerHTML]=recipe.short_desc >
+                </ion-col>
+              </ion-row>
+  
+              <ion-row>
+                  <ion-col class="ion-text-center">
+                    <ion-button (click)="addRecipeToWishlist(recipe)"  fill="outline" shape="round" color="medium" class="ion-no-padding">
+                      <ion-icon slot="icon-only" [color]="recipe.added==true?'danger':'medium'"  name="heart" class="p-2"></ion-icon>
+                    </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row class="bg-white mt-2 pb-4">
+      <ion-text class="">
+        <h4 class="ion-padding-start pt-3 mb-0">Продукти для рецепта</h4>
+      </ion-text>
+  
+      <ion-slides class="pr-3 pl-3" [options]="{ slidesPerView: 1.8, spaceBetween: 10, centeredSlides: false }">
+        <ion-slide *ngFor="let product of recipe.products; let i = index">
+
+        <ion-card class="ml-0 mr-0">
+          <ion-card-header (click)="showProduct(product)">
+            
+            <img src="{{product.main_image?product.main_image.url+'?a=bc.jpg':'https://foodforlife.com.ua/storage/15802/5ec46f4e87ba4_chef-with-hat.svg'}}" />
+          </ion-card-header>
+          
+  
+          <ion-card-content class="p-2">
+            <ion-grid>
+              <ion-row (click)="showProduct(product)">
+                <ion-col class="overflow-dots text-black">
+                    <small>{{product.name}}</small>
+                </ion-col>
+              </ion-row>
+              
+              <ion-row >
+                <ion-col class="ion-text-left">
+                  <ion-text>
+                    <h2 class="text-bold text-black">{{product.price}}$</h2>
+                  </ion-text>
+                  <ion-text>
+                    <h3 class="">100gr</h3>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+  
+                <ion-row class="p-0">
+                  <ion-col size="3" class="p-0">
+                    <ion-button (click)="addToWishlist(product,this)"  fill="outline" shape="round" color="medium" class="ion-no-padding">
+                      <ion-icon slot="icon-only" [color]="product.added==true?'danger':'medium'"  name="heart" class="p-2"></ion-icon>
+                    </ion-button>
+                </ion-col>
+                  <ion-col size="9" class="ion-text-right p-0">
+                    <ion-button (click)="addToCart(product)" fill="outline" shape="round" color="medium" class="ion-no-padding ion-padding-end">
+                      <span class="text-success ">+</span><ion-icon class="pt-2 pb-2 pl-2 pr-0" slot="icon-only" color="success" name="cart"></ion-icon>
+                    </ion-button>
+                </ion-col>
+                </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+
+        </ion-slide>
+      </ion-slides>
+      <ion-button shape="round" expand="block" color="medium" fill="outline" class="text-center w-100 pl-3 pr-3" >
+        <ion-text (click)="addAll()" class="text-capitalize" color="success"> Додати Всі</ion-text>
+        <ion-icon slot="icon-only" color="success" slot="end" name="cart"></ion-icon>
+      </ion-button>
+    </ion-row>
+  </ion-grid> 
+
+</ion-content>

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
+<base-config cleartextTrafficPermitted="true">
+    <trust-anchors>
+        <certificates src="system" />
+    </trust-anchors>
+</base-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">com</domain>
+        <domain includeSubdomains="true">net</domain>
+        <domain includeSubdomains="true">org</domain>
+        <domain includeSubdomains="true">http://192.168.0.101</domain>
+        <domain includeSubdomains="true">http://localhost</domain>
+        <domain includeSubdomains="true">https://www.foodforlife.com.ua</domain>
     </domain-config>
 </network-security-config>

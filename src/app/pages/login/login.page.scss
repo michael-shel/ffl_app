@@ -1,0 +1,63 @@
+.login-logo {
+  padding: 20px 0;
+  min-height: 200px;
+  text-align: center;
+}
+
+.login-logo img {
+  max-width: 150px;
+  border-radius: 150px;
+}
+
+.list {
+  margin-bottom: 0;
+}
+
+a.restore-pswrd {
+    text-align: center;
+    padding: 20px;
+    text-decoration: blink;
+    display: block;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+.t-center {
+  text-align: center;
+}
+
+ion-select{
+  color: #0072ff;
+  font-weight: 400;
+}
+
+.label-limit{
+    max-width: 8em;
+    width: 4em;
+}
+
+ion-grid {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+ion-form, h1 {
+    text-align: left;
+    margin-top:0; 
+    padding: 0 15px;
+}
+
+.blockbutton-down{
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.mb-d{
+    margin-bottom: 25%;
+}

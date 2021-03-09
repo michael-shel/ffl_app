@@ -1,0 +1,10 @@
+.overflow-dots-search { 
+    line-height: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    // min-height: 58px;
+  }

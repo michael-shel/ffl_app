@@ -1,0 +1,158 @@
+<ion-header #header class="header">
+  <ion-grid class="p-0">
+    <ion-row>
+      <ion-col size="8" class="p-0">
+        <ion-searchbar class="pr-0" (click)="openSearch()" placeholder="Пошук"></ion-searchbar>
+      </ion-col>
+      <ion-col class="ion-text-end ion-no-padding p-0" size="2" class="justify-content-end">
+        <ion-button fill="clear" (click)="openWishlist()">
+          <ion-icon slot="icon-only" color="success" name="heart"></ion-icon>
+          <ion-badge color="success" class="badge-for-wishlist">{{ wishlistItemCount | async }}</ion-badge>
+        </ion-button>
+      </ion-col>
+      <ion-col class="ion-text-end ion-no-padding p-0" size="2" class="justify-content-end">
+          <ion-button fill="clear" (click)="Account()" >
+          <ion-icon slot="icon-only" color="success" name="person"></ion-icon>
+          </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-header>
+
+
+
+<ion-content scrollEvents="true" appHideHeader [header]="header">
+  <div class="bg-white">
+    <ion-toolbar color="success" >
+      <ion-title bold>
+        
+      </ion-title>
+      <ion-grid class="ion-no-padding-bottom">
+        <ion-row>
+          <ion-col class="ion-text-start ion-no-padding-bottom">
+            <img id="logo" src="/assets/img/logo.svg"/>
+          </ion-col>
+          <ion-col class="ion-text-end ion-no-padding" size="2" class="justify-content-end">
+            <ion-button fill="clear" (click)="openWishlist()">
+              <ion-icon slot="icon-only" color="light" name="heart"></ion-icon>
+              <ion-badge color="success" class="badge-for-wishlist">{{ wishlistItemCount | async }}</ion-badge>
+            </ion-button>
+          </ion-col>
+          <ion-col class="ion-text-end ion-no-padding ion-padding-end" size="2" class="justify-content-end">
+              <ion-button (click)="Account()" fill="clear" class="">
+                <ion-icon slot="icon-only" color="light" name="person"></ion-icon>
+              </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    <!--       
+      <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher> -->
+    
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-button color="light" fill="outline" shape="round" (click)="selectStore()">
+              <ion-text>{{selectedStore.value.name?selectedStore.value.name:'Магазин'}}</ion-text>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div (click)="openSearch()" class="ion-padding-end ion-padding-start">
+      <ion-searchbar placeholder="Пошук"></ion-searchbar>
+      </div>
+    </ion-toolbar>
+  
+    <ion-grid class="ion-no-padding-bottom">
+      <ion-row>
+        <ion-col class="mine-orders">
+            <ion-button (click)="openOrders()" shape="round" color="success" class="ion-no-padding">
+              <ion-icon slot="icon-only" color="light" name="cart"></ion-icon>
+            </ion-button>
+            <ion-label>
+              <h3 class="pl-2">Мої закази в FoodforLife</h3>
+            </ion-label>
+            <!-- <ion-text> -->
+              <!-- <p>Мої закази в FoodforLife</p> -->
+            <!-- </ion-text> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+  </div>
+  <div class="bg-white mt-2 pb-3">
+    <ion-text class="" *ngIf="category">
+      <h4 class="ion-padding-start pt-3">{{category.name}}</h4>
+    </ion-text>
+
+    <ion-slides class="pr-3 pl-3" [options]="{ slidesPerView: 1.8, spaceBetween: 10, centeredSlides: false }" *ngIf="products">
+    <ion-slide *ngFor="let product of products">
+      <ion-card class="ml-0 mr-0" >
+        <ion-card-header (click)="openProduct(product)">
+          <img class="img-box-sizing" src="{{product.main_image?product.main_image.url:'https://foodforlife.com.ua/storage/15802/5ec46f4e87ba4_chef-with-hat.svg'}}" />
+        </ion-card-header>
+        
+
+        <ion-card-content class="p-2">
+          <ion-grid class="p-0">
+            <ion-row (click)="openProduct(product)">
+              <ion-col class="overflow-dots text-black">
+                  <small>{{product.name}}</small>
+              </ion-col>
+            </ion-row>
+            
+            <ion-row>
+              <ion-col class="ion-text-left">
+                <ion-text>
+                  <h2 class="text-bold text-black">{{product.price}}$</h2>
+                </ion-text>
+                <ion-text *ngIf="product.data.length == 0">
+                  <h3 class="text-muted invisible" >0</h3>
+                </ion-text>
+                <ion-text *ngFor="let attribute of product.data">
+                  <h3 class="text-muted" *ngIf="attribute.term == 'Вага'" >{{attribute.value}}</h3>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="p-0">
+              <ion-col size="3" class="p-0">
+                <ion-button (click)="addToWishlist(product,this)"  fill="outline" shape="round" color="medium" class="ion-no-padding">
+                  <ion-icon slot="icon-only" [color]="product.added==true?'danger':'medium'"  name="heart" class="p-2"></ion-icon>
+                </ion-button>
+            </ion-col>
+              <ion-col size="9" class="ion-text-right p-0">
+                <ion-button (click)="addToCart(product)" fill="outline" shape="round" color="medium" class="ion-no-padding ion-padding-end">
+                  <span class="text-success ">+</span><ion-icon class="pt-2 pb-2 pl-2 pr-0" slot="icon-only" color="success" name="cart"></ion-icon>
+                </ion-button>
+            </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    </ion-slides>
+    <ion-button (click)=goToProduct() shape="round" expand="block" color="medium" fill="outline" class="pr-3 pl-3 see-all" >
+      <ion-text class="text-capitalize text-success"> Дивитися Всі {{category_lenght}} </ion-text>
+     </ion-button>
+    </div>
+  <div class="mt-2">
+  <ion-item class="ion-no-padding" color="light">
+      <ion-text class="ion-padding-start">
+        <h4 class="pt-3">Каталог товарів</h4>
+      </ion-text>
+  </ion-item>
+  
+  <ion-list class="ion-no-padding bg-white mb-0 pb-4">
+        <ion-item button routerLink="/app/app/home/products/{{category.id}}" routerDirection="forward" color="light"  *ngFor="let category of categories">
+          <ion-img slot="start" src="{{category.small_icon?category.small_icon.url+'?a=bc.jpg':''}}" class="component-icon component-icon-primary icon-img"></ion-img>
+          <ion-label>
+            <h3>{{ category.name }}</h3>
+          </ion-label>
+        </ion-item>
+  </ion-list>
+  </div>
+</ion-content>

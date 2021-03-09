@@ -1,0 +1,121 @@
+<ion-header class="sc-ion-card-ios-h m-0 bg-white pt-3">
+  <!-- <img id="logo" src="/assets/img/logo.svg"/> -->
+    <ion-button shape="round" expand="block" color="medium" fill="outline" size="small" class="float-right"  (click)="close()">
+      <ion-icon slot="icon-only" color="dark" name="close"></ion-icon>
+    </ion-button>
+    <ion-buttons slot="end" class="float-right">
+      <ion-button shape="round" expand="block" color="medium" fill="outline" size="small" (click)="presentActionSheet()">
+        <ion-icon slot="icon-only" color="dark" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-toolbar class="p-3" color="light">
+      <ion-segment (ionChange)="segmentChanged($event.detail.value)" value="{{status}}" color="success">
+        <ion-segment-button value="product">
+          <ion-label>Товари</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="recipe">
+          <ion-label>Рецепти</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen> 
+  <div class="" *ngIf="status == 'product'">
+    <ion-list class="m-0 mb-2 border-bottom sc-ion-card-ios-h">
+
+      <ion-list-header class="bg-white">
+        Вподобані товари
+      </ion-list-header>
+      <div *ngFor="let product of wishlist">
+      <ion-grid  *ngIf="product.store_id == store.id" class="border-top bg-white">
+        <ion-row>
+          <ion-col (click)="openProduct(product)" size="3" class="d-flex align-items-center justify-content-center">
+            <ion-img class="cart-image-box" src="{{product.main_image?product.main_image.url:'https://foodforlife.com.ua/storage/15802/5ec46f4e87ba4_chef-with-hat.svg'}}"></ion-img>
+          </ion-col>
+          <ion-col>
+            <ion-row (click)="openProduct(product)">
+              <ion-text class="overflow-dots">
+                <small> {{product.name}} </small>
+              </ion-text>
+            </ion-row>
+            <ion-row class="align-items-center">
+              <ion-col class="p-0" (click)="openProduct(product)">
+                <ion-row class="line-height-1">
+                  <ion-text>
+                    <small class="text-bold"> 
+                    {{product.price}}
+                    </small>
+                  </ion-text>
+                </ion-row>
+                <ion-row class="line-height-1">
+                  <ion-text *ngIf="product.data.length == 0">
+                    <small class="text-muted invisible" >0</small>
+                  </ion-text>
+                  <ion-text *ngFor="let attribute of product.data">
+                    <small class="text-muted" *ngIf="attribute.term == 'Вага'" >{{attribute.value}}</small>
+                  </ion-text>
+                </ion-row>
+              </ion-col>
+              <ion-col class="p-0 text-right pr-3">
+                <ion-button fill="solid" shape="round" color="success" class="ion-no-padding" (click)="decreaseWishlistItem(product)">
+                  <ion-icon slot="icon-only" color="light" class="p-2" name="trash-bin"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    </ion-list>
+  </div>
+
+  <div class=""  *ngIf="status == 'recipe'">
+    <ion-list class="m-0 mb-2 border-bottom sc-ion-card-ios-h">
+      <ion-list-header class="bg-white">
+        Вподобані рецепти
+      </ion-list-header>
+      <ion-grid *ngFor="let product of recipe" class="border-top bg-white">
+        <ion-row>
+          <ion-col size="3" class="d-flex align-items-center justify-content-center">
+            <ion-img class="cart-image-box" src="{{product.main_image?product.main_image.url:'https://foodforlife.com.ua/storage/15802/5ec46f4e87ba4_chef-with-hat.svg'}}"></ion-img>
+          </ion-col>
+          <ion-col size="6">
+              <ion-text class="overflow-dots-recipes">
+                <small> {{product.name}} </small>
+              </ion-text>
+          </ion-col>
+              <ion-col size="3" class="text-center">
+                <ion-button fill="solid" shape="round" color="success" class="ion-no-padding" (click)="decreaseRecipeItem(product)">
+                  <ion-icon slot="icon-only" color="light" class="p-2" name="trash-bin"></ion-icon>
+                </ion-button>
+              </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </div>
+ 
+</ion-content>
+
+<div class="bg-white sc-ion-card-ios-h m-0"  *ngIf="status == 'product'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2" class="text-center">
+          <ion-button shape="round"  color="medium" fill="clear" size="" class="ion-no-padding"  (click)="close()">
+            <ion-icon slot="icon-only" color="dark" name="close"></ion-icon>
+          </ion-button>        
+        </ion-col>
+        <ion-col size="10">
+          <ion-button fill="solid" expand="block" shape="round" color="success" class="w-100 float-right">
+            <ion-grid>
+              <ion-row>
+                <ion-col (click)="findRecipe()">
+                  Знайти Рецепт
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</div>
